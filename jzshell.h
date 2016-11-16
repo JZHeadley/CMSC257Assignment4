@@ -5,7 +5,7 @@
 #define JZSHELL_INCLUDED
 
 
-int handleInput(int size, char** args);
+int handleInput(int size, char* args);
 
 
 #endif

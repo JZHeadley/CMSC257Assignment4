@@ -5,7 +5,7 @@
 #include "jzshell.h"
 
 
-int handleInput(int size, char* args[]) {
+int handleInput(int size, char args[]) {
     char *string;
     const char delim[] = " ";
 

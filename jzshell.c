@@ -3,28 +3,26 @@
 
 #include "jzshell.h"
 
-char command[50];
-char *shellName;
+
 int main(int argc, char* argv[]){
+    int i;
+    char *shellName="shell";
+    char command[50];
+
+
     if(argc > 0){
-        printf("parsing args\n");
-        char* arg =strtok(argv," ");
-        while(arg != NULL){
-
-            if (strcmp(arg,"-p")!=0){
-                printf("was passed a shell name\n");
-
-                shellName=strtok(NULL," ");
+        for(i=1;i<argc;i++){
+            //printf("comparison between arg and -p:\t%i\n",strcmp(argv[i],"-p"));
+            if (strcmp(argv[i],"-p")!=0){
+                //printf("was passed a shell name\n");
+                shellName=argv[i];
             }
         }
     }
 
-    printf("%s> ",shellName);
     while(1) {
-
+        printf("%s> ",shellName);
         scanf("%s",command);
-        int commandSize=sizeof(command) / sizeof(*command);
-
         handleInput(strlen(command),command);
     }
     return 0;
