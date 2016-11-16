@@ -22,7 +22,7 @@ int main(int argc, char* argv[]){
 
     while(1) {
         printf("%s> ",shellName);
-        scanf("%s",command);
+        gets(command);
         handleInput(strlen(command),command);
     }
     return 0;
