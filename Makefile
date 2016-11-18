@@ -20,5 +20,5 @@ jzshell_support.o : jzshell_support.c jzshell.h
 clean :
 	rm -f jzshell_support.o jzshell.o jzshell
 
-run : 
+run : all
 	sh run.sh
