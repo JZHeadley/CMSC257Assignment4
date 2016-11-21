@@ -18,7 +18,7 @@ void printEndStatus(int statusCode){
         fprintf(stdout,"The command worked with status code %i\n",statusCode);
     } else {
         fprintf(stderr,RED "The command failed with status code %i\n" RESET,statusCode);
-        raise(SIGKILL);
+        /*raise(SIGKILL);*/
     }
 }
 

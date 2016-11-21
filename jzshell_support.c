@@ -67,8 +67,9 @@ int handleNonBuiltin(char *cmd, char* args){
     }
     if(returnCode==-1){
         fprintf(stderr,"command was not found: %s\n",cmdWithArgsForExec[0]);
+        exit(returnCode);
     }else{
-        wait(&childPid);
+        wait(&returnCode);
     }
     return returnCode;
 }
