@@ -17,13 +17,16 @@ int parseInput(int size, char args[]) {
     int i;
     int returnCode;
     cmd = strtok(args,delim);
+    for(i=0;i<50;i++){
+        cmdWithArgsForExec[i]=NULL;
+    }
     cmdWithArgsForExec[0] = cmd;
     cmdArgs=strtok(0,"\n");
     char *token=strtok(cmdArgs,delim);
     for(i=1;i<size;i++){
         if(token!=NULL){
             cmdWithArgsForExec[i] = token;
-            token=strtok(cmdArgs,delim);
+            token=strtok(NULL,delim);
         }
     }
 
