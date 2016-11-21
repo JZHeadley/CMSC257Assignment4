@@ -65,8 +65,11 @@ int handleNonBuiltin(char *cmd, char* args){
     if ( childPid == 0){
         returnCode=execvp(cmdWithArgsForExec[0],cmdWithArgsForExec);
     }
-
-    wait(&childPid);
+    if(returnCode==-1){
+        fprintf(stderr,"command was not found: %s\n",cmdWithArgsForExec[0]);
+    }else{
+        wait(&childPid);
+    }
     return returnCode;
 }
 
@@ -81,7 +84,7 @@ int handleBuiltin(char *cmd,char* args){
             returnCodeue=chdir(args);
         printf("%s\n",cwd);
     } else if(strcmp(cmd,"exit")==0) {
-        raise(SIGQUIT);
+        raise(SIGKILL);
     } else if(strcmp(cmd,"pid")==0) {
         printf("The pid of the shell is %i\n",getpid());
     } else if(strcmp(cmd,"ppid")==0) {
