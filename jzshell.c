@@ -10,6 +10,7 @@
 #define RED "\x1b[31m"
 #define RESET "\x1b[0m"
 
+char *shellName="257sh";
 
 void printEndStatus(int statusCode){
     if (statusCode == 0){
@@ -19,11 +20,23 @@ void printEndStatus(int statusCode){
     }
 }
 
+void printPrompt(){
+    char cwd[100];
+    getcwd(cwd,100);
+    printf("%s:%s> ",shellName,cwd);
+
+}
+
+void signal_handler(int sigNum){
+    printf("\n");
+    printPrompt();
+    return;
+}
+
 int main(int argc, char* argv[]){
     int i;
-    char *shellName="257sh";
     char command[50];
-    char cwd[100];
+    signal(SIGINT,signal_handler);
     int status;
     if(argc > 0){
         for(i=1;i<argc;i++){
@@ -34,8 +47,7 @@ int main(int argc, char* argv[]){
     }
 
     while(1) {
-        getcwd(cwd,100);
-        printf("%s:%s> ",shellName,cwd);
+        printPrompt();
         fgets(command,sizeof(command),stdin);
         command[strlen(command)-1]='\0';
         status = parseInput(strlen(command),command);

@@ -74,7 +74,6 @@ int handleNonBuiltin(char *cmd, char* args){
 int handleBuiltin(char *cmd,char* args){
     char cwd[100];
     int returnCodeue=0;
-    printf("handlingbuiltins\n");
     if(strcmp(cmd,"cd")==0) {
         if(args==NULL)
             getcwd(cwd,100);
@@ -82,7 +81,7 @@ int handleBuiltin(char *cmd,char* args){
             returnCodeue=chdir(args);
         printf("%s\n",cwd);
     } else if(strcmp(cmd,"exit")==0) {
-        raise(SIGKILL);
+        raise(SIGQUIT);
     } else if(strcmp(cmd,"pid")==0) {
         printf("The pid of the shell is %i\n",getpid());
     } else if(strcmp(cmd,"ppid")==0) {
